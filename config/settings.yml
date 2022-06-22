@@ -4,20 +4,20 @@ mitm:
 
 webdriver:
   headless: False
-  use: edge
+  use: chrome
   edge:
     bin: msedgedriver.exe
   chrome:
-    bin: chromedriver
+    bin: ./chromedriver
     no_sandbox: True
 
 output:
   use:
-    - print
+    # - print
     - xml
     - debug
   xml:
-    save_path: "./"
+    save_path: "./room_config"
     file_pattern: "{room_id}_{ts}.xml"
   debug:
     save_path:
@@ -27,7 +27,7 @@ output:
 
 live:
   rooms:
-    - ""
+    - "https://live.douyin.com/638227291144"
   users:
     - ""
 

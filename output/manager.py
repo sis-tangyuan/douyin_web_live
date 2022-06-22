@@ -16,6 +16,7 @@ from output.print import Print
 from output.xml import XMLWriter
 from protobuf import message_pb2, wss_pb2
 from proxy.queues import MESSAGE_QUEUE
+from websocket import Websocket
 
 if TYPE_CHECKING:
     from typing import Type, Optional, List
@@ -32,6 +33,8 @@ class OutputManager():
     _writer: "List[IOutput]" = []
     _thread: "Optional[threading.Thread]"= None
     _should_exit = threading.Event()
+
+    # _websocket: "Optional[Websocket]" = None
 
     def __init__(self):
         _config = config()['output']['use']
@@ -128,3 +131,6 @@ class OutputManager():
 
         for writer in self._writer:
             writer.terminate()
+
+    def setWs(self, ws):
+        self._writer.append(ws)
